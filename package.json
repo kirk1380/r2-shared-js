@@ -1,6 +1,6 @@
 {
   "name": "r2-shared-js",
-  "version": "1.0.72",
+  "version": "1.0.73",
   "description": "Readium 2 'shared' for NodeJS (TypeScript)",
   "keywords": [
     "readium",
@@ -102,7 +102,7 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "rimraf node_modules/@types/glob",
+    "postinstall": "rimraf node_modules/@types/glob || echo ok",
     "cson2json": "sed -E \"s/#ECMASCRIPT#/es5/g\" package-scripts-build.cson > tmp-build.cson && sed -E \"s/#ECMASCRIPT#/es6-es2015/g\" package-scripts-build.cson >> tmp-build.cson && sed -E \"s/#ECMASCRIPT#/es7-es2016/g\" package-scripts-build.cson >> tmp-build.cson && sed -E \"s/#ECMASCRIPT#/es8-es2017/g\" package-scripts-build.cson >> tmp-build.cson && json -I -f package.json -e \"this.scripts=$(cat package-scripts.cson tmp-build.cson | node node_modules/.bin/cson2json)\" && rimraf tmp-build.cson",
     "copydist": "cpy \"./dist/\" ../r2-opds-js/node_modules/r2-shared-js/ --cwd=\"./\" && cpy \"./dist/\" ../r2-streamer-js/node_modules/r2-shared-js/ --cwd=\"./\" && cpy \"./dist/\" ../r2-navigator-js/node_modules/r2-shared-js/ --cwd=\"./\" && cpy \"./dist/\" ../r2-testapp-js/node_modules/r2-shared-js/ --cwd=\"./\" && cpy \"./dist/\" ../readium-desktop/node_modules/r2-shared-js/ --cwd=\"./\"",
     "quick-build-dist": "npm run transpile:typescript:es8-es2017+afterdist && npm run copydist",

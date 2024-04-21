@@ -1,10 +1,27 @@
 # Next
 
 Git diff:
-* https://github.com/readium/r2-shared-js/compare/v1.0.72...develop
+* https://github.com/readium/r2-shared-js/compare/v1.0.73...develop
 
 Changes:
 * TODO
+
+# 1.0.73
+
+> Build environment: NodeJS `20.12.0`, NPM `10.5.0`
+
+Changes:
+* Fixed postinstall NPM script which was breaking production package installs (i.e. without rimraf development dependency)
+
+Git revision info:
+* https://unpkg.com/r2-shared-js@1.0.73/dist/gitrev.json
+* https://github.com/edrlab/r2-shared-js-dist/blob/v1.0.73/dist/gitrev.json
+
+Git commit history:
+* https://github.com/readium/r2-shared-js/commits/v1.0.73
+
+Git diff:
+* https://github.com/readium/r2-shared-js/compare/v1.0.72...v1.0.73
 
 # 1.0.72
 
