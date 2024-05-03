@@ -179,6 +179,35 @@ if (args[1]) {
                     outputDirPath,
                     publication,
                     generateDaisyAudioManifestOnly ? fileName : undefined);
+
+                const isFullTextAudio = publication.Metadata?.AdditionalJSON &&
+                    // dtb:multimediaContent ==> audio,text
+                    (publication.Metadata.AdditionalJSON["dtb:multimediaType"] === "audioFullText" ||
+                    publication.Metadata.AdditionalJSON["ncc:multimediaType"] === "audioFullText" || (
+                        !publication.Metadata.AdditionalJSON["dtb:multimediaType"] &&
+                        !publication.Metadata.AdditionalJSON["ncc:multimediaType"]
+                    ));
+                if (isFullTextAudio && !publication.Spine?.length) {
+                    console.log("%%%%% FAILED audio+text DAISY convert, trying again as audio-only ...");
+                    publication.freeDestroy();
+                    try {
+                        publication = await PublicationParsePromise(filePath);
+                    } catch (err) {
+                        console.log("== Publication Parser: reject");
+                        console.log(err);
+                        return;
+                    }
+                    // TODO: delete file contents (webpub zip) inside outputDirPath? shouldn't be necessary as fs.createWriteStream() by default overrides, so does fs.writeFileSync() in the case of generateDaisyAudioManifestOnly
+                    await new Promise((reso) => {
+                        setTimeout(async () => {
+                            reso(await convertDaisyToReadiumWebPub(
+                                outputDirPath!,
+                                publication,
+                                generateDaisyAudioManifestOnly ? fileName : undefined,
+                                true));
+                        }, 500);
+                    });
+                }
             } else {
                 await extractEPUB((isAnEPUB || isDaisyBook) ? true : false, publication, outputDirPath, decryptKeys);
             }

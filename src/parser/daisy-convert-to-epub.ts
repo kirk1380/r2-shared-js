@@ -41,7 +41,8 @@ function ensureDirs(fspath: string) {
 export const convertDaisyToReadiumWebPub = async (
     outputDirPath: string,
     publication: Publication,
-    generateDaisyAudioManifestOnly?: string): Promise<string | undefined> => {
+    generateDaisyAudioManifestOnly: string | undefined,
+    forceAudioOnly?: boolean): Promise<string | undefined> => {
 
     // debug("DEBUG: ", global.JSON.stringify(publication, null, 4));
 
@@ -51,7 +52,7 @@ export const convertDaisyToReadiumWebPub = async (
         // https://www.daisy.org/z3986/specifications/Z39-86-2002.html#Type
         // https://www.daisy.org/z3986/specifications/daisy_202.html
 
-        const isFullTextAudio = publication.Metadata?.AdditionalJSON &&
+        const isFullTextAudio = !forceAudioOnly && publication.Metadata?.AdditionalJSON &&
             // dtb:multimediaContent ==> audio,text
             (publication.Metadata.AdditionalJSON["dtb:multimediaType"] === "audioFullText" ||
             publication.Metadata.AdditionalJSON["ncc:multimediaType"] === "audioFullText" || (
@@ -59,12 +60,12 @@ export const convertDaisyToReadiumWebPub = async (
                 !publication.Metadata.AdditionalJSON["ncc:multimediaType"]
             ));
 
-        const isAudioOnly = publication.Metadata?.AdditionalJSON &&
+        const isAudioOnly = forceAudioOnly || publication.Metadata?.AdditionalJSON &&
             // dtb:multimediaContent ==> audio
             (publication.Metadata.AdditionalJSON["dtb:multimediaType"] === "audioNCX" ||
             publication.Metadata.AdditionalJSON["ncc:multimediaType"] === "audioNcc");
 
-        const isTextOnly = publication.Metadata?.AdditionalJSON &&
+        const isTextOnly = !forceAudioOnly && publication.Metadata?.AdditionalJSON &&
             // dtb:multimediaContent ==> text
             (publication.Metadata.AdditionalJSON["dtb:multimediaType"] === "textNCX" ||
             publication.Metadata.AdditionalJSON["ncc:multimediaType"] === "textNcc");
