@@ -1,10 +1,28 @@
 # Next
 
 Git diff:
-* https://github.com/readium/r2-shared-js/compare/v1.0.73...develop
+* https://github.com/readium/r2-shared-js/compare/v1.0.74...develop
 
 Changes:
 * TODO
+
+# 1.0.74
+
+> Build environment: NodeJS `20.12.2`, NPM `10.7.0`
+
+Changes:
+* NPM package updates
+* Workaround for broken DAISY 2.02 digital talking books that reference non-existing text documents, fallback to audio-only (works with both media overlays EPUB conversion and audiobook ReadiumWebPubManifest)
+
+Git revision info:
+* https://unpkg.com/r2-shared-js@1.0.74/dist/gitrev.json
+* https://github.com/edrlab/r2-shared-js-dist/blob/v1.0.74/dist/gitrev.json
+
+Git commit history:
+* https://github.com/readium/r2-shared-js/commits/v1.0.74
+
+Git diff:
+* https://github.com/readium/r2-shared-js/compare/v1.0.73...v1.0.74
 
 # 1.0.73
 
