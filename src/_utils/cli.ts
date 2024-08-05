@@ -563,7 +563,7 @@ async function extractEPUB_MediaOverlays(pub: Publication, _zip: IZip, outDir: s
         return;
     }
 
-    let i = -1;
+//Removed to rename media-overlay.json
     for (const spineItem of pub.Spine) {
 
         if (spineItem.MediaOverlays) {
@@ -581,9 +581,9 @@ async function extractEPUB_MediaOverlays(pub: Publication, _zip: IZip, outDir: s
             const moJsonObj = TaJsonSerialize(mo);
             const moJsonStr = global.JSON.stringify(moJsonObj, null, "  ");
 
-            //Removed to rename media-overlay.json            i++;
-            //Removed to rename media-overlay.json            const p = `media-overlays_${i}.json`;
-                    
+//Removed to rename media-overlay.json            i++;
+//Removed to rename media-overlay.json            const p = `media-overlays_${i}.json`;
+
             const p = mo.SmilPathInZip ? mo.SmilPathInZip.replace("OPS/audio", "media-overlays").replace("smil", "json") : "";
             ensureDirs(path.join(outDir, p));
 
