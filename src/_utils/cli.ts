@@ -563,7 +563,7 @@ async function extractEPUB_MediaOverlays(pub: Publication, _zip: IZip, outDir: s
         return;
     }
 
-//Removed to rename media-overlay.json
+//Removed to rename media-overlay.json    let i = -1;
     for (const spineItem of pub.Spine) {
 
         if (spineItem.MediaOverlays) {
