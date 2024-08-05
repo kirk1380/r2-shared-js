@@ -15,7 +15,7 @@
     "**/node_modules*": true
   },
   "search.exclude": {},
-  "git.enabled": false,
+  "git.enabled": true,
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "typescript.surveys.enabled": false,
