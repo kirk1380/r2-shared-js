@@ -12,10 +12,11 @@
     "**/.vscode": false,
     "**/ava-ts": true,
     "**/bower_components": true,
-    "**/node_modules*": true
+    "**/node_modules*": true,
+    "**/dist*": true
   },
   "search.exclude": {},
-  "git.enabled": false,
+  "git.enabled": true,
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "typescript.surveys.enabled": false,
