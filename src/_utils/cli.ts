@@ -581,8 +581,11 @@ async function extractEPUB_MediaOverlays(pub: Publication, _zip: IZip, outDir: s
             const moJsonObj = TaJsonSerialize(mo);
             const moJsonStr = global.JSON.stringify(moJsonObj, null, "  ");
 
-            i++;
-            const p = `media-overlays_${i}.json`;
+            //Removed to rename media-overlay.json            i++;
+            //Removed to rename media-overlay.json            const p = `media-overlays_${i}.json`;
+                    
+            const p = mo.SmilPathInZip ? mo.SmilPathInZip.replace("OPS/audio", "media-overlays").replace("smil", "json") : "";
+            ensureDirs(path.join(outDir, p));
 
             const moJsonPath = path.join(outDir, p);
             fs.writeFileSync(moJsonPath, moJsonStr, "utf8");
